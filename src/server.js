@@ -1,4 +1,5 @@
 import express from "express"
+
 import {
   handleBadRequest,
   handleNotAuth,
@@ -9,11 +10,13 @@ import {
 const server = express()
 const port = 3001
 
-server.listen(port, () => {
-  console.log("Server running on part " + port)
-})
+server.use(express.json())
 
 server.use(handleBadRequest)
 server.use(handleNotAuth)
 server.use(handleNotFound)
 server.use(serverError)
+
+server.listen(port, () => {
+  console.log("Server running on part " + port)
+})
